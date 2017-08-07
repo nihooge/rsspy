@@ -7,6 +7,7 @@ app = Flask(__name__)
 def hello():
     return "Hello World!"
 
+@app.route('/rss')
 def rss():
     root = etree.XML('''<?xml version="1.0"?><rss></rss>''')
 
