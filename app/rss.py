@@ -1,11 +1,18 @@
 from lxml import etree
 from flask import Flask
+from flask import Response
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
     return "Hello World!"
+
+
+@app.route('/foo')
+def ajax_ddl():
+    xml = 'foo'
+    return Response(xml, mimetype='text/xml')
 
 @app.route('/rss')
 def rss():
@@ -41,5 +48,8 @@ def rss():
     item_pubdate = etree.SubElement(item, "pubDate")
     item_pubdate.text = "Wed, 02 Aug 2017 17:00:10 Z"
 
-    return etree.tostring(root,pretty_print=False)
+    # return etree.tostring(root,pretty_print=False)
+    return Response(etree.tostring(root,pretty_print=False), mimetype='text/xml')
+
+
     # print(etree.tostring(root, pretty_print=True))
