@@ -48,8 +48,9 @@ def rss():
     item_pubdate = etree.SubElement(item, "pubDate")
     item_pubdate.text = "Wed, 02 Aug 2017 17:00:10 Z"
 
+
     # return etree.tostring(root,pretty_print=False)
-    return Response(etree.tostring(root,pretty_print=False), mimetype='text/xml')
+    return Response(etree.tostring(root,pretty_print=False,xml_declaration = True, encoding='UTF-8'), mimetype='text/xml')
 
 
     # print(etree.tostring(root, pretty_print=True))
